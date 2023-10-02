@@ -1,0 +1,32 @@
+.app-element-cell {
+  display: block;
+  grid-row: var(--element-period);
+  grid-column: var(--element-group);
+  --size: 1rem;
+
+  .element-cell__face {
+    view-transition-name: var(--element-name);
+    contain: paint;
+    border: 2px solid var(--element-color);
+    background-color: color-mix(in srgb, var(--element-color), transparent 70%);
+    width: calc(3 * var(--size));
+    height: calc(3 * var(--size));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: color-mix(in srgb, var(--element-color), black 50%);
+
+    .element-cell__title {
+      font-weight: 700;
+      font-size: calc(1.3 * var(--size));
+    }
+
+    .element-cell__number {
+      position: absolute;
+      top: calc(0.125 * var(--size));
+      left: calc(0.125 * var(--size));
+      font-size: calc(0.5 * var(--size));
+    }
+  }
+}
