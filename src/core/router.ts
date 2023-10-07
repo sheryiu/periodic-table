@@ -43,7 +43,7 @@ export class Router {
       } else {
         (document as any).startViewTransition(async () => {
           this.updateBody(innerHTML);
-          await new Promise(r => setTimeout(r, 10));
+          await new Promise(r => setTimeout(r, 0));
         })
       }
     } else {

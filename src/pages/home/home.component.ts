@@ -1,5 +1,7 @@
-import { Component, DefineComponent } from '../../core/component';
+import { Component, Definitions } from '../../core/component';
 import './home.component.css';
+
+const { DefineComponent } = Definitions();
 
 @DefineComponent('app-home-page')
 export class HomePage extends Component {

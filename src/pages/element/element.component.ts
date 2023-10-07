@@ -1,21 +1,24 @@
 import { ElementCellComponent } from '../../components/element-cell/element-cell.component';
-import { Component, DefineComponent } from '../../core/component';
+import { Component, Definitions } from '../../core/component';
 import './element.component.css';
+
+const { DefineComponent, DefineInput } = Definitions();
 
 @DefineComponent('app-element-page')
 export class ElementPage extends Component {
 
-  private _atomicNumber: number = Number(this.getAttribute('atomicNumber'));
-  get atomicNumber(): number {
-    return this._atomicNumber;
-  }
-  set atomicNumber(val: number | string) {
-    if (val != null) {
-      this.setAttribute('atomicNumber', String(val));
-      this._atomicNumber = Number(val);
-    }
-    this.updateView();
-  }
+  @DefineInput(Number) accessor atomicNumber!: number;
+  // private _atomicNumber: number = Number(this.getAttribute('atomicNumber'));
+  // get atomicNumber(): number {
+  //   return this._atomicNumber;
+  // }
+  // set atomicNumber(val: number | string) {
+  //   if (val != null) {
+  //     this.setAttribute('atomicNumber', String(val));
+  //     this._atomicNumber = Number(val);
+  //   }
+  //   this.updateView();
+  // }
 
   constructor() {
     super(
@@ -34,7 +37,9 @@ export class ElementPage extends Component {
     this.updateView();
   }
 
-  private updateView() {
-    this._elementCellEl.atomicNumber = this.atomicNumber;
+  override updateView() {
+    if (this._elementCellEl) {
+      this._elementCellEl.atomicNumber = this.atomicNumber;
+    }
   }
 }
