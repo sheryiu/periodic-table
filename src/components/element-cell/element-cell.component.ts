@@ -1,5 +1,6 @@
-import { Component, Definitions } from '../../core/component';
+import { Component, Definitions } from '../../core';
 import data from '../../shared/data.json';
+import { getElementCpkColor } from '../../shared/get-element';
 import './element-cell.component.css';
 
 const { DefineComponent, DefineInput } = Definitions();
@@ -23,13 +24,13 @@ export class ElementCellComponent extends Component {
 
   override connectedCallback(): void {
     super.connectedCallback();
-    this.classList.add('app-element-cell');
     this._titleEl = this.querySelector('.element-cell__title')!;
     this._numberEl = this.querySelector('.element-cell__number')!;
     this.updateView();
   }
 
   override updateView() {
+    super.updateView();
     const element = data.find((el) => el.atomicNumber === this.atomicNumber);
     if (element && this._titleEl && this._numberEl) {
       this._titleEl.innerHTML = element.symbol;
@@ -37,7 +38,7 @@ export class ElementCellComponent extends Component {
       this.style.setProperty('--element-name', element.name);
       this.style.setProperty(
         '--element-color',
-        '#' + (typeof element.cpkHexColor === 'number' ? String(element.cpkHexColor).padStart(6, '0') : element.cpkHexColor.padStart(6, '0'))
+        getElementCpkColor(element)
       );
       this.style.setProperty('--size', `${this.displaySize}rem`);
     }

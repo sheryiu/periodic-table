@@ -7,3 +7,45 @@
 /* ::view-transition-group(*) {
   animation-duration: 1s;
 } */
+
+h1 {
+  font-weight: 300;
+  font-size: 4rem;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+div.center-container {
+  margin-inline: auto;
+  width: 100%;
+}
+@media screen {
+  @media (min-width: 480px) {
+    div.center-container {
+      width: 480px;
+    }
+  }
+  @media (min-width: 600px) {
+    div.center-container {
+      width: 600px;
+    }
+  }
+  @media (min-width: 768px) {
+    div.center-container {
+      width: 768px;
+    }
+  }
+  @media (min-width: 1280px) {
+    div.center-container {
+      width: 1280px;
+    }
+  }
+  @media (min-width: 1500px) {
+    div.center-container {
+      width: 1500px;
+    }
+  }
+}

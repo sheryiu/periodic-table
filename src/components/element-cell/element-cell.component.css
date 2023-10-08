@@ -1,7 +1,6 @@
 .app-element-cell {
-  display: block;
-  grid-row: var(--element-period);
-  grid-column: var(--element-group);
+  width: fit-content;
+  height: fit-content;
   --size: 1rem;
 
   .element-cell__face {

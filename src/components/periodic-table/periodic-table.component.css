@@ -2,4 +2,10 @@
   display: grid;
   grid-template-columns: repeat(32, auto);
   gap: 0.25rem;
+
+  .app-element-cell {
+    display: block;
+    grid-row: var(--element-period);
+    grid-column: var(--element-group);
+  }
 }

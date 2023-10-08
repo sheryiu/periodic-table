@@ -1,0 +1,47 @@
+.element-page__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  container-type: inline-size;
+}
+
+.element-page__header {
+  background-color: lightgray;
+  /* background-color: color-mix(in srgb, color-mix(in srgb, var(--element-color), transparent 80%), var(--header-color) 15%); */
+  padding-block: 0rem;
+
+  > .center-container {
+    display: flex;
+    gap: 2rem;
+    padding-inline: 3cqw;
+  }
+
+  .app-element-cell {
+    display: block;
+    translate: 0 3rem;
+  }
+
+  .element-page__title {
+    color: color-mix(in srgb, var(--element-color), black 60%);
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.element-page__electron--wrapper {
+  background-color: cornflowerblue;
+  padding-block-start: 3rem;
+  padding-block-end: 2rem;
+
+  > .center-container {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 3cqw;
+  }
+
+  & h2 {
+    color: darkblue;
+  }
+}
