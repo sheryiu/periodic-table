@@ -34,6 +34,11 @@ export class PeriodicTableComponent extends Component {
 
   private router = Router.getRouter();
 
+  private _windowMouseMoveHandler?: (e: PointerEvent) => void;
+  private _elementFacesOriginX?: string;
+  private _elementFacesOriginY?: string;
+  private _destroyed: boolean = false;
+
   constructor() {
     super(
       [
@@ -52,5 +57,30 @@ export class PeriodicTableComponent extends Component {
       (cell as HTMLElement).style.setProperty('--element-period', String(getElementPeriod(i + 1)));
       (cell as HTMLElement).style.setProperty('--element-group', String(getElementGroup(i + 1)));
     })
+    this.listenToWindowMouse();
+  }
+
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this._destroyed = true;
+    this.removeWindowMouseListener();
+  }
+
+  private listenToWindowMouse() {
+    const animate = () => {
+      this._elementFacesOriginX && this.style.setProperty('--face-origin-x', this._elementFacesOriginX);
+      this._elementFacesOriginY && this.style.setProperty('--face-origin-y', this._elementFacesOriginY);
+      !this._destroyed && requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+    this._windowMouseMoveHandler = (e: PointerEvent) => {
+      this._elementFacesOriginX = (e.clientX + (this.scrollLeft)) + 'px';
+      this._elementFacesOriginY = (e.clientY + (this.scrollTop)) + 'px';
+    }
+    window.addEventListener('pointermove', this._windowMouseMoveHandler);
+  }
+
+  private removeWindowMouseListener() {
+    this._windowMouseMoveHandler && window.removeEventListener('pointermove', this._windowMouseMoveHandler);
   }
 }

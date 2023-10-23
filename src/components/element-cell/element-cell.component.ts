@@ -10,8 +10,15 @@ export class ElementCellComponent extends Component {
   constructor() {
     super([
       '<div class="element-cell__face">',
-      `<span class="element-cell__title"></span>`,
-      `<span class="element-cell__number"></span>`,
+        `<span class="element-cell__title"></span>`,
+        `<span class="element-cell__number"></span>`,
+      '</div>',
+      '<div class="element-cell__face--wrapper">',
+        '<div class="element-cell__face--behind" data-pos="left"></div>',
+        '<div class="element-cell__face--behind" data-pos="right"></div>',
+        '<div class="element-cell__face--behind" data-pos="top"></div>',
+        '<div class="element-cell__face--behind" data-pos="bottom"></div>',
+        '<div class="element-cell__face--behind" data-pos="back"></div>',
       '</div>'
     ]);
   }
@@ -27,6 +34,14 @@ export class ElementCellComponent extends Component {
     this._titleEl = this.querySelector('.element-cell__title')!;
     this._numberEl = this.querySelector('.element-cell__number')!;
     this.updateView();
+    setTimeout(() => {
+      this.style.setProperty('--self-x', this.getBoundingClientRect().x + 'px');
+      this.style.setProperty('--self-y', this.getBoundingClientRect().y + 'px');
+    })
+  }
+
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
   }
 
   override updateView() {

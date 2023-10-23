@@ -1,4 +1,13 @@
+.app-periodic-table {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+}
+
 .periodic-table {
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(32, auto);
   gap: 0.25rem;
